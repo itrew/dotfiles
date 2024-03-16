@@ -1,0 +1,9 @@
+# Git Configuration
+#
+# Settings for when interacting with a work related repository.
+#
+# The properites set in this file are only included if the path of the repo
+# includes ~/dev/wdfw/.
+
+[user]
+	email = "Ian.Trewella@dfw.wa.gov"

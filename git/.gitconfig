@@ -1,0 +1,32 @@
+# Git Configuration
+#
+# Used for general system wide settings and is copied to ~/.gitconfig.
+
+[core]
+	autocrlf = input
+	editor = code --wait
+
+[http]
+	sslbackend = schannel
+
+[user]
+	name = "Ian Trewella"
+	email = "ian@itrew.net"
+
+[alias]
+	# Show which files have been changed most often.
+	# https://github.com/dougthor42/dotfiles/blob/master/.gitconfig
+	code-changes = "!git log --format=format: --name-only | /bin/grep -E -v '^$' | sort | uniq -c | sort -rg | head -n 15"
+	# Prune any local squashed-and-merged branches.
+	# Usage:
+	#   git prune-squash-merged
+	#   git prune-squash-merged -n
+	#   git prune-squash-merged --dry-run
+	prunesq = "!bash ~/dev/itrew/dotfiles/git/git_prune_squashed_merges.sh"
+
+# Include directory specific configs for work and personal repos based on the
+# parent directory.
+[includeIf "gitdir:~/dev/itrew/"]
+	path = ~/dev/itrew/dotfiles/git/.gitconfig-personal
+[includeIf "gitdir:~/dev/wdfw/"]
+	path = ~/dev/itrew/dotfiles/git/.gitconfig-work
